@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+{% load tz %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+
+
+
+<body class="flex flex-col items-center">
+    <div class="bg-white shadow-xl rounded-lg max-w-4xl w-full">
+
+        <!-- Header -->
+        <div class="bg-blue-900 text-white flex justify-between items-center px-4 py-3 rounded-t-lg">
+            <img src="{% static 'images/vth_logo.png' %}" alt="VTH Logo" class="h-20">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold">Veterinary Teaching Hospital</h1>
+                <h2 class="text-xl">Bangladesh Agricultural University, Mymensingh</h2>
+            </div>
+            <img src="{% static 'images/bau_logo.png' %}" alt="BAU Logo" class="h-20">
+        </div>
+
+        <!-- Case Info -->
+        <div class="px-6 pt-2">
+            <div class="flex justify-between">
+                <p class="text-lg font-semibold">Case No: <span class="font-normal">
+
+                    </span></p>
+                <p class="text-lg font-semibold">Date: <span class="font-normal">{% now "F j, Y" %}</span></p>
+            </div>
+        </div>
+
+        <!-- Owner & Animal Info -->
+        <div class="px-6 grid grid-cols-2 gap-20">
+            <div>
+                <p><span class="font-semibold">Owner Name:</span> {{ owner_info.name }}</p>
+                <p><span class="font-semibold">Phone:</span> {{ owner_info.phone }}</p>
+                <p><span class="font-semibold">Address:</span> {{ owner_info.address|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p><span class="font-semibold">Prescription For:</span> {{ patient.species }}</p>
+                <p><span class="font-semibold">Age:</span> {{ patient.age }} years</p>
+                <p><span class="font-semibold">Sex:</span> {{ patient.sex }}</p>
+                <p><span class="font-semibold">Body Weight:</span> {{ patient.weight }} kg</p>
+            </div>
+        </div>
+
+        <!-- Prescription Section -->
+        <div class="px-6 py-4">
+            <h3 class="text-xl font-bold mb-2 text-blue-900">Prescription:</h3>
+            <div class="border p-4 rounded-md min-h-[500px]">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-blue-900 text-white text-center p-3 rounded-b-lg mt-4">
+            <p class="text-sm">
+                Veterinary Teaching Hospital, Bangladesh Agricultural University, Mymensingh<br>
+                📞 +880-XXX-XXXXXXX | ✉️ info@bau.edu.bd
+            </p>
+        </div>
+    </div>
+    <!-- Back button -->
+    <div class="mt-6 p-6 text-center">
+        <a href="{% url 'staff_all_appointment' %}"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-semibold transition-colors">
+            Back to Appointments
+        </a>
+    </div>
+</body>
+
+</html>

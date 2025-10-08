@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'images/vth_logo.png' %}" rel="icon" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>
+        {% block title %}
+        BAU VTH
+        {% endblock title %}
+    </title>
+</head>
+
+<body class="bg-sky-100">
+    {% include "user_app/user_navbar.html" %}
+    <div>
+        {% block content %}
+
+        <!-- Background Section (full viewport height) -->
+        <div class="w-full min-h-screen bg-cover bg-center"
+            style="background-image: url('{% static 'images/vth_hospital_background.jpg' %}')">
+            <div class="h-[100vh] flex items-center justify-center w-[50vw] text-center p-2 pt-50">
+                <h1 class="text-white text-5xl md:text-6xl">
+                    Welcome to <br> BAU Veterinary Teaching Hospital
+                </h1>
+            </div>
+
+        </div>
+        {% endblock content %}
+    </div>
+    {% include "user_app/user_footer.html" %}
+
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+{% extends "user_app/user_index.html" %}
+{% load static %}
+
+{% block title %}
+Appoitnment
+{% endblock title %}
+
+{% block content %}
+
+<div class="m-4">
+    <a href="{% url 'user_profile'%}"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl w-full text-center block">
+        Back to profile
+    </a>
+</div>
+{% include "user_app/user_message.html" %}
+
+<form method='POST' class="w-auto mx-4 p-6 bg-white shadow-md rounded-lg space-y-8">
+    {% csrf_token %}
+    <!-- Section 1: Owner's Information -->
+    <fieldset class="border border-gray-300 p-4 rounded-lg">
+        <legend class="text-xl font-bold px-2">Owner's Information</legend>
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="owner_name" class="block font-semibold">Your Name</label>
+                <input type="text" id="owner_name" name="owner_name" required placeholder="Enter your name"
+                    value="{{user.first_name}}"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="owner_phone" class="block font-semibold">Phone Number</label>
+                <input type="tel" id="owner_phone" name="owner_phone" required placeholder="Enter phone number"
+                    value="{{user.username}}"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="division" class="block font-semibold">Division</label>
+                <select id="division" name="division"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <option value="Mymensingh" selected>Mymensingh</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Barisal">Barisal</option>
+                    <option value="Rajshahi">Rajshahi</option>
+                    <option value="Rangpur">Rangpur</option>
+                    <option value="Sylhet">Sylhet</option>
+                    <option value="Rangpur">Rangpur</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="district" class="block font-semibold">District</label>
+                <input type="text" id="district" name="district" value="{{info.district}}" placeholder="Enter district"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="upazila" class="block font-semibold">Upazila</label>
+                <input type="text" id="upazila" name="upazila" value="{{info.upazila}}" placeholder="Enter upazila"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="address" class="block font-semibold">Address</label>
+                <input type="text" id="address" name="address" value="{{info.address}}" placeholder="Enter address"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+        </div>
+    </fieldset>
+
+    <!-- Section 2: Patient Information -->
+    <fieldset class="border border-gray-300 p-4 rounded-lg">
+        <legend class="text-xl font-bold px-2">Patient Information</legend>
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="tag" class="block font-semibold">Tag</label>
+                <input type="text" id="tag" name="tag" placeholder="Enter tag"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="species_type" class="block font-semibold">Species Type</label>
+                <input type="text" id="species_type" name="species_type" placeholder="Enter species"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="breed" class="block font-semibold">Breed</label>
+                <input type="text" id="breed" name="breed" placeholder="Enter breed"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="body_weight" class="block font-semibold">Body Weight (kg)</label>
+                <input type="number" id="body_weight" name="body_weight" placeholder="Enter body weight"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="age" class="block font-semibold">Age (years)</label>
+                <input type="number" id="age" name="age" placeholder="Enter age"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label class="block font-semibold">Sex</label>
+                <div class="flex gap-4 mt-1">
+                    <label><input type="radio" name="sex" value="Male" class="mr-1"> Male</label>
+                    <label><input type="radio" name="sex" value="Female" checked class="mr-1"> Female</label>
+                </div>
+            </div>
+
+            <div>
+                <label class="block font-semibold">Pregnancy</label>
+                <div class="flex gap-4 mt-1">
+                    <label><input type="radio" name="pregnancy" value="Yes" class="mr-1"> Yes</label>
+                    <label><input type="radio" name="pregnancy" value="No" checked class="mr-1"> No</label>
+                </div>
+            </div>
+
+            <div>
+                <label for="pregnancy_month" class="block font-semibold">Pregnancy Month</label>
+                <input type="number" id="pregnancy_month" name="pregnancy_month" placeholder="Enter month"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="parity" class="block font-semibold">Parity</label>
+                <input type="number" id="parity" name="parity" placeholder="Enter parity"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="milk_yield" class="block font-semibold">Milk Yield (L/d)</label>
+                <input type="number" id="milk_yield" name="milk_yield" placeholder="Enter milk yield"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="date_of_parturition" class="block font-semibold">Date of Parturition</label>
+                <input type="date" id="date_of_parturition" name="date_of_parturition"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="date_of_oestrus" class="block font-semibold">Date of Oestrus</label>
+                <input type="date" id="date_of_oestrus" name="date_of_oestrus"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="total_animal" class="block font-semibold">Total Animals</label>
+                <input type="number" id="total_animal" name="total_animal"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="total_sick" class="block font-semibold">Total Sick Animals</label>
+                <input type="number" id="total_sick" name="total_sick"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="total_dead" class="block font-semibold">Total Dead Animals</label>
+                <input type="number" id="total_dead" name="total_dead"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <div>
+                <label for="duration_illness" class="block font-semibold">Duration of Illness</label>
+                <input type="text" id="duration_illness" name="duration_illness" placeholder="Enter duration"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+        </div>
+    </fieldset>
+
+    <!-- Section 3: Owner's Complaint -->
+    <fieldset class="border border-gray-300 p-4 rounded-lg">
+        <legend class="text-xl font-bold px-2">Describe Complaint</legend>
+        <div class="mt-4">
+
+            <textarea id="complaint" required name="complaint" rows="4"
+                placeholder="Describe what’s wrong with the animal (e.g., symptoms, behavior changes, duration of illness)"
+                class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+        </div>
+    </fieldset>
+
+    <!-- Section 4: Clinical History -->
+    <fieldset class="border border-gray-300 p-4 rounded-lg">
+        <legend class="text-xl font-bold px-2">Clinical History</legend>
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-1 gap-4">
+            <div>
+                <label for="disease_history" class="block font-semibold">Disease History</label>
+                <textarea id="disease_history" name="disease_history" rows="3" placeholder="Enter disease history"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+
+            <div>
+                <label for="treatment_history" class="block font-semibold">Treatment History</label>
+                <textarea id="treatment_history" name="treatment_history" rows="3" placeholder="Enter treatment history"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+
+            <div>
+                <label for="management_history" class="block font-semibold">Management History</label>
+                <textarea id="management_history" name="management_history" rows="3"
+                    placeholder="Enter management history"
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+        </div>
+    </fieldset>
+
+    <!-- Submit Button -->
+
+    <div class="text-center flex justify-center gap-4">
+        <a href="{% url 'user_profile' %}"
+            class="bg-gray-400 hover:bg-gray-600 text-white font-bold px-6 py-2 rounded-2xl">Back to profile</a>
+        <button type="reset" class="bg-gray-400 hover:bg-gray-600 text-white font-bold px-6 py-2 rounded-2xl">
+            Reset
+        </button>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-6 py-2 rounded-2xl">
+            Submit
+        </button>
+
+    </div>
+</form>
+
+
+{% endblock content %}

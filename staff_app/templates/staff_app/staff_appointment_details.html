@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Details</title>
+</head>
+
+<body>
+    <div class="bg-blue-100 p-4 ">
+        <div class="max-w-3xl m-auto bg-gray-100 shadow rounded-lg p-6">
+            <h1 class="text-3xl font-bold mb-4 text-gray-800">
+                Details of Appointment ID: {{ patient.id }}
+            </h1>
+
+            <!-- Owner Info -->
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-2 text-red-900">Owner Information</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div><span class="font-semibold">Name:</span> {{ patient.name }}</div>
+                    <div><span class="font-semibold">Phone:</span> {{ patient.phone }}</div>
+                </div>
+            </div>
+
+            <!-- Animal Info -->
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-2 text-red-900">Animal Details</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div><span class="font-semibold">Tag:</span>
+                        {% if patient.weight != -1 %}{{ patient.weight }} kg{% else %}N/A{% endif %}
+                    </div>
+                    <div><span class="font-semibold">Species:</span> {{ patient.species }}</div>
+                    <div><span class="font-semibold">Breed:</span> {{ patient.breed }}</div>
+                    <div><span class="font-semibold">Weight:</span>
+                        {% if patient.weight != -1 %}{{ patient.weight }} kg{% else %}N/A{% endif %}
+                    </div>
+                    <div><span class="font-semibold">Age:</span>
+                        {% if patient.age != -1 %}{{ patient.age }} years{% else %}N/A{% endif %}
+                    </div>
+                    <div><span class="font-semibold">Sex:</span> {{ patient.sex }}</div>
+                    <div><span class="font-semibold">Pregnancy:</span>
+                        {% if patient.pregnancy %}Yes{% else %}No{% endif %}
+                    </div>
+                    <div><span class="font-semibold">Pregnancy Month:</span>
+                        {% if patient.pregnancy_month != -1 %}{{ patient.pregnancy_month }}{% else %}N/A{% endif %}
+                    </div>
+                    <div><span class="font-semibold">Parity:</span> {{ patient.parity|default:"N/A" }}</div>
+                    <div><span class="font-semibold">Milk Yield:</span>
+                        {% if patient.milk_yield != -1 %}{{ patient.milk_yield }} liters/day{% else %}N/A{% endif %}
+                    </div>
+                    <div><span class="font-semibold">Date of Parturition:</span>
+                        {% if patient.date_of_parturition %}{{ patient.date_of_parturition|date:"M d, Y" }}{% else %}N/A
+                        {% endif %}
+                    </div>
+                    <div><span class="font-semibold">Date of Oestrus:</span>
+                        {% if patient.date_of_oestrus %}{{ patient.date_of_oestrus|date:"M d, Y" }}{% else %}N/A
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Info -->
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-2 text-red-900">Health Information</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div><span class="font-semibold">Total Animals:</span>
+                        {% if patient.total_animals != -1 %}{{ patient.total_animals }}{% else %}N/A{% endif %}
+                    </div>
+                    <div><span class="font-semibold">Total Sick:</span>
+                        {% if patient.total_sick_animals != -1 %}{{ patient.total_sick_animals }}{% else %}N/A
+                        {% endif %}
+                    </div>
+                    <div><span class="font-semibold">Total Dead:</span>
+                        {% if patient.total_dead_animals != -1 %}{{ patient.total_dead_animals }}{% else %}N/A
+                        {% endif %}
+                    </div>
+                    <div><span class="font-semibold">Duration of Illness:</span>
+                        {% if patient.duration_of_illness != -1 %}{{ patient.duration_of_illness }} days{% else %}N/A
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Information -->
+            <div>
+                <h2 class="text-xl font-semibold mb-2 text-red-900">Other Information</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div><span class="font-semibold">Complaint:</span> {{ patient.complaint|default:"N/A" }}</div>
+                    <div><span class="font-semibold">Disease History:</span> {{ patient.disease_history|default:"N/A" }}
+                    </div>
+                    <div><span class="font-semibold">Treatment History:</span>
+                        {{patient.treatment_history|default:"N/A" }}</div>
+                    <div><span class="font-semibold">Management History:</span>
+                        {{patient.management_history|default:"N/A" }}</div>
+                </div>
+            </div>
+
+            <!-- Back button -->
+            <div class="mt-6 p-6 text-center">
+                <a href="{% url 'staff_all_appointment' %}"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-semibold transition-colors">
+                    Back to Appointments
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src=""></script>
+</body>
+
+
+</html>
