@@ -1,0 +1,26 @@
+# Python compiled files
+*.pyc
+__pycache__/
+
+# Django local files
+*.sqlite3
+*.log
+*.pot
+*.py[cod]
+*.coverage
+*.mo
+
+# Django migrations (optional, you may keep them if you want)
+*/migrations/*.py
+*/migrations/*.pyc
+
+# Static files
+/staticfiles/
+/media/
+
+# Environment variables (if any)
+.env
+
+# VS Code settings (optional)
+.vscode/
+
